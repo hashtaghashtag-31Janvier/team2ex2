@@ -34,11 +34,14 @@ def lengthWord(word1, word2, maximum=100000):
     #g Make an iterator that aggregates elements from each of the iterables. 
     #g If the iterables are of uneven length, missing values are filled-in with fillvalue.
     #g Iteration continues until the longest iterable is exhausted.
+    #ce bout la etait vrmt une idee de marde...
     for char1, char2 in itertools.izip_longest(word1, word2, fillvalue=' '):
         if char1 != char2:
             nombreDifference = nombreDifference + 1
             if nombreDifference == maximum:
                 return maximum
+        #print nombreDifference
+            
     return nombreDifference
 
 
@@ -49,8 +52,9 @@ def findDist(graph, word1, word2):
     s = {word1}
 
     #g pour x dans le graph, la entre x et word2
-    distance_courante = {x: 1 + lengthWord(x, word2) for x in graph[word1]}
+    distance_courante = {x: 1 + lengthWord(x, word2) for x in graph[word1]} #dafuq kinda syntax is dat
     print(distance_courante)
+    return distance_courante
     # check list filter and stuff 
     #g (C'est a faire ou quoi xD  je crois que oui, fuu, je sais pas quoi faire ici... ca marche?)
 
@@ -58,7 +62,7 @@ def findDist(graph, word1, word2):
 
 if __name__ == "__main__":
 
-    # sys.argv = ["", "cat", "dog"]  # Pour tester
+    sys.argv = ["", "cat", "dog"]  # Pour tester
 
     if len(sys.argv) < 3:
         print("Pas assez d'arguments")
@@ -78,7 +82,7 @@ if __name__ == "__main__":
         graph = {}
         i = len(word1)
         wordsOfLengthI = list(filter(lambda x: len(x) == i, words))
-        print(i, len(wordsOfLengthI))
+        #print(i, len(wordsOfLengthI))
         for w1 in wordsOfLengthI:
             for w2 in wordsOfLengthI:
                 if lengthWord(w1, w2, 2) == 1:
